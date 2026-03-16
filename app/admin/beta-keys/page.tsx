@@ -74,15 +74,22 @@ export default function AdminBetaKeysPage() {
         <table className="w-full font-sans text-sm">
           <thead>
             <tr className="border-b border-border bg-card">
-              <th className="px-4 py-3 text-left font-medium text-text-muted">Key</th>
-              <th className="px-4 py-3 text-left font-medium text-text-muted">User</th>
-              <th className="px-4 py-3 text-left font-medium text-text-muted">Status</th>
-              <th className="px-4 py-3 text-left font-medium text-text-muted">Expires</th>
-              <th className="px-4 py-3 text-left font-medium text-text-muted">Created</th>
-              <th className="px-4 py-3 text-left font-medium text-text-muted">Actions</th>
+              <th scope="col" className="px-4 py-3 text-left font-medium text-text-muted">Key</th>
+              <th scope="col" className="px-4 py-3 text-left font-medium text-text-muted">User</th>
+              <th scope="col" className="px-4 py-3 text-left font-medium text-text-muted">Status</th>
+              <th scope="col" className="px-4 py-3 text-left font-medium text-text-muted">Expires</th>
+              <th scope="col" className="px-4 py-3 text-left font-medium text-text-muted">Created</th>
+              <th scope="col" className="px-4 py-3 text-left font-medium text-text-muted">Actions</th>
             </tr>
           </thead>
           <tbody>
+            {keys.length === 0 && (
+              <tr>
+                <td colSpan={6} className="px-4 py-12 text-center text-text-muted font-sans">
+                  No beta keys found.
+                </td>
+              </tr>
+            )}
             {keys.map((k) => (
               <tr key={k.id} className="border-b border-border/50 hover:bg-card/50">
                 <td className="px-4 py-3 font-mono text-xs text-gold">{k.key}</td>

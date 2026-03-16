@@ -54,9 +54,9 @@ export default function PricingPage() {
                 <span className="font-sans text-xs font-semibold text-crimson">NOW OPEN</span>
               </div>
 
-              <h3 className="font-display text-3xl tracking-wide text-text-primary">
+              <h2 className="font-display text-3xl tracking-wide text-text-primary">
                 Closed Beta
-              </h3>
+              </h2>
               <div className="mt-4 flex items-baseline gap-2">
                 <span className="font-display text-5xl text-gold">$0</span>
                 <span className="font-sans text-sm text-text-muted">/ during beta</span>

@@ -7,7 +7,7 @@ export default function CTASection() {
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         <div className="relative overflow-hidden rounded-2xl border border-border bg-card">
           {/* Background glow */}
-          <div className="absolute top-0 right-0 w-96 h-96 bg-crimson/[0.06] rounded-full blur-3xl -translate-y-1/2 translate-x-1/3" />
+          <div aria-hidden="true" className="absolute top-0 right-0 w-96 h-96 bg-crimson/[0.06] rounded-full blur-3xl -translate-y-1/2 translate-x-1/3" />
 
           <div className="relative px-8 py-16 text-center md:px-16 md:py-24">
             <p className="font-sans text-xs font-semibold tracking-widest text-gold uppercase mb-6">

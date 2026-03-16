@@ -78,15 +78,22 @@ export default function AdminUsersPage() {
         <table className="w-full font-sans text-sm">
           <thead>
             <tr className="border-b border-border bg-card">
-              <th className="px-4 py-3 text-left font-medium text-text-muted">Email</th>
-              <th className="px-4 py-3 text-left font-medium text-text-muted">Role</th>
-              <th className="px-4 py-3 text-left font-medium text-text-muted">Verified</th>
-              <th className="px-4 py-3 text-left font-medium text-text-muted">Beta Key</th>
-              <th className="px-4 py-3 text-left font-medium text-text-muted">Key Status</th>
-              <th className="px-4 py-3 text-left font-medium text-text-muted">Joined</th>
+              <th scope="col" className="px-4 py-3 text-left font-medium text-text-muted">Email</th>
+              <th scope="col" className="px-4 py-3 text-left font-medium text-text-muted">Role</th>
+              <th scope="col" className="px-4 py-3 text-left font-medium text-text-muted">Verified</th>
+              <th scope="col" className="px-4 py-3 text-left font-medium text-text-muted">Beta Key</th>
+              <th scope="col" className="px-4 py-3 text-left font-medium text-text-muted">Key Status</th>
+              <th scope="col" className="px-4 py-3 text-left font-medium text-text-muted">Joined</th>
             </tr>
           </thead>
           <tbody>
+            {data.users.length === 0 && (
+              <tr>
+                <td colSpan={6} className="px-4 py-12 text-center text-text-muted font-sans">
+                  No users found.
+                </td>
+              </tr>
+            )}
             {data.users.map((user) => (
               <tr key={user.id} className="border-b border-border/50 hover:bg-card/50">
                 <td className="px-4 py-3 text-text-primary">{user.email}</td>
@@ -98,7 +105,8 @@ export default function AdminUsersPage() {
                   </span>
                 </td>
                 <td className="px-4 py-3">
-                  <span className={`h-2 w-2 inline-block rounded-full ${user.emailVerified ? "bg-emerald-400" : "bg-yellow-400"}`} />
+                  <span className={`h-2 w-2 inline-block rounded-full ${user.emailVerified ? "bg-emerald-400" : "bg-yellow-400"}`} aria-hidden="true" />
+                  <span className="sr-only">{user.emailVerified ? "Verified" : "Unverified"}</span>
                 </td>
                 <td className="px-4 py-3 font-mono text-xs text-text-secondary">
                   {user.betaKey?.key || "—"}

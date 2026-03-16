@@ -19,7 +19,7 @@
 
   --text-primary: #f5f5f5;
   --text-secondary: #a3a3a3;
-  --text-muted: #737373;
+  --text-muted: #8a8a8a;
 
   --background: var(--black-deep);
   --foreground: var(--text-primary);
@@ -133,4 +133,37 @@ body {
   border: none;
   height: 1px;
   background: linear-gradient(90deg, transparent, var(--crimson), transparent);
+}
+
+/* ─── Focus Rings ─── */
+*:focus {
+  outline: none;
+}
+
+*:focus-visible {
+  outline: 2px solid var(--crimson);
+  outline-offset: 2px;
+}
+
+/* ─── Reduced Motion ─── */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ─── Screen Reader Only ─── */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
 }

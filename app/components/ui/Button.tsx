@@ -37,6 +37,8 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
       <button
         ref={ref}
         disabled={disabled || loading}
+        aria-disabled={disabled || loading || undefined}
+        aria-busy={loading || undefined}
         className={cn(
           "inline-flex items-center justify-center gap-2 rounded-md font-sans font-semibold tracking-wide transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer",
           variants[variant],

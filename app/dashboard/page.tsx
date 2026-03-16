@@ -86,7 +86,7 @@ export default async function DashboardPage() {
               </div>
             </div>
             <div className="flex items-center gap-3">
-              <span className={`h-2 w-2 rounded-full ${user.emailVerified ? "bg-emerald-400" : "bg-yellow-400"}`} />
+              <span className={`h-2 w-2 rounded-full ${user.emailVerified ? "bg-emerald-400" : "bg-yellow-400"}`} aria-hidden="true" />
               <p className="font-sans text-sm text-text-secondary">
                 Email {user.emailVerified ? "verified" : "not verified"}
               </p>

@@ -25,7 +25,18 @@ export default function AdminPage() {
   }, []);
 
   if (!stats) {
-    return <p className="text-text-muted font-sans">Loading...</p>;
+    return (
+      <div>
+        <div className="h-10 w-64 rounded bg-card animate-pulse mb-8" />
+        <div className="grid gap-6 md:grid-cols-3 mb-12">
+          {[1, 2, 3].map((i) => (
+            <div key={i} className="h-24 rounded-lg border border-border bg-card animate-pulse" />
+          ))}
+        </div>
+        <div className="h-6 w-48 rounded bg-card animate-pulse mb-4" />
+        <div className="h-64 rounded-lg border border-border bg-card animate-pulse" />
+      </div>
+    );
   }
 
   return (
@@ -70,13 +81,20 @@ export default function AdminPage() {
         <table className="w-full font-sans text-sm">
           <thead>
             <tr className="border-b border-border bg-card">
-              <th className="px-4 py-3 text-left font-medium text-text-muted">Email</th>
-              <th className="px-4 py-3 text-left font-medium text-text-muted">Role</th>
-              <th className="px-4 py-3 text-left font-medium text-text-muted">Verified</th>
-              <th className="px-4 py-3 text-left font-medium text-text-muted">Joined</th>
+              <th scope="col" className="px-4 py-3 text-left font-medium text-text-muted">Email</th>
+              <th scope="col" className="px-4 py-3 text-left font-medium text-text-muted">Role</th>
+              <th scope="col" className="px-4 py-3 text-left font-medium text-text-muted">Verified</th>
+              <th scope="col" className="px-4 py-3 text-left font-medium text-text-muted">Joined</th>
             </tr>
           </thead>
           <tbody>
+            {stats.recentUsers.length === 0 && (
+              <tr>
+                <td colSpan={4} className="px-4 py-12 text-center text-text-muted font-sans">
+                  No recent registrations.
+                </td>
+              </tr>
+            )}
             {stats.recentUsers.map((user) => (
               <tr key={user.id} className="border-b border-border/50 hover:bg-card/50">
                 <td className="px-4 py-3 text-text-primary">{user.email}</td>
@@ -88,7 +106,8 @@ export default function AdminPage() {
                   </span>
                 </td>
                 <td className="px-4 py-3">
-                  <span className={`h-2 w-2 inline-block rounded-full ${user.emailVerified ? "bg-emerald-400" : "bg-yellow-400"}`} />
+                  <span className={`h-2 w-2 inline-block rounded-full ${user.emailVerified ? "bg-emerald-400" : "bg-yellow-400"}`} aria-hidden="true" />
+                  <span className="sr-only">{user.emailVerified ? "Verified" : "Unverified"}</span>
                 </td>
                 <td className="px-4 py-3 text-text-muted">{formatDate(user.createdAt)}</td>
               </tr>

@@ -19,17 +19,19 @@ export default function Footer() {
           </Link>
 
           {/* Links */}
-          <div className="flex flex-wrap justify-center gap-6">
-            {footerLinks.map((link) => (
-              <Link
-                key={link.href}
-                href={link.href}
-                className="font-sans text-sm text-text-muted transition-colors hover:text-text-secondary"
-              >
-                {link.label}
-              </Link>
-            ))}
-          </div>
+          <nav aria-label="Footer">
+            <div className="flex flex-wrap justify-center gap-6">
+              {footerLinks.map((link) => (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  className="font-sans text-sm text-text-muted transition-colors hover:text-text-secondary"
+                >
+                  {link.label}
+                </Link>
+              ))}
+            </div>
+          </nav>
         </div>
 
         <hr className="hr-accent my-8" />

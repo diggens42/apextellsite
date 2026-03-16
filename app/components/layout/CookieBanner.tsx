@@ -33,7 +33,7 @@ export default function CookieBanner() {
   if (consent !== null) return null;
 
   return (
-    <div className="fixed bottom-0 left-0 right-0 z-50 border-t border-border bg-card/95 backdrop-blur-xl p-4 md:p-6 animate-fade-in">
+    <div role="region" aria-label="Cookie consent" aria-live="polite" className="fixed bottom-0 left-0 right-0 z-50 border-t border-border bg-card/95 backdrop-blur-xl p-4 md:p-6 animate-fade-in">
       <div className="mx-auto flex max-w-5xl flex-col gap-4 md:flex-row md:items-center md:justify-between">
         <div className="space-y-1">
           <p className="font-sans text-sm font-medium text-text-primary">

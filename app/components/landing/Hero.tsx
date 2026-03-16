@@ -5,13 +5,13 @@ export default function Hero() {
   return (
     <section className="relative overflow-hidden">
       {/* Background grid effect */}
-      <div className="absolute inset-0 opacity-[0.03]" style={{
+      <div aria-hidden="true" className="absolute inset-0 opacity-[0.03]" style={{
         backgroundImage: `linear-gradient(rgba(220,38,38,0.3) 1px, transparent 1px), linear-gradient(90deg, rgba(220,38,38,0.3) 1px, transparent 1px)`,
         backgroundSize: "60px 60px",
       }} />
 
       {/* Radial glow */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] rounded-full bg-crimson/[0.04] blur-3xl" />
+      <div aria-hidden="true" className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] rounded-full bg-crimson/[0.04] blur-3xl" />
 
       <div className="relative mx-auto max-w-7xl px-6 lg:px-8">
         <div className="flex min-h-[90vh] flex-col items-center justify-center text-center">
@@ -53,7 +53,7 @@ export default function Hero() {
           </div>
 
           {/* Mock UI Frame */}
-          <div className="mt-20 w-full max-w-4xl">
+          <div className="mt-20 w-full max-w-4xl" role="img" aria-label="ApexTell application preview showing session profit of $1,247, 847 hands played, 6 active tables, and HUD stats including VPIP, PFR, 3Bet, AF, and WTSD">
             <div className="rounded-xl border border-border bg-card/50 p-2 shadow-2xl shadow-crimson/5">
               <div className="flex items-center gap-2 border-b border-border px-4 py-3">
                 <div className="h-3 w-3 rounded-full bg-crimson/60" />

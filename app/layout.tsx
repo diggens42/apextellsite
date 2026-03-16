@@ -43,8 +43,14 @@ export default function RootLayout({
       <body
         className={`${bebasNeue.variable} ${dmMono.variable} ${cormorantGaramond.variable} antialiased`}
       >
+        <a
+          href="#main-content"
+          className="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-[100] focus:rounded-md focus:bg-crimson focus:px-4 focus:py-2 focus:text-white focus:font-sans focus:text-sm"
+        >
+          Skip to content
+        </a>
         <Navbar />
-        <div className="pt-16">{children}</div>
+        <main id="main-content" className="pt-16">{children}</main>
         <Footer />
         <CookieBanner />
       </body>

@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { Menu, X } from "lucide-react";
 import Button from "../ui/Button";
 
@@ -13,8 +13,19 @@ const navLinks = [
 export default function Navbar() {
   const [open, setOpen] = useState(false);
 
+  const close = useCallback(() => setOpen(false), []);
+
+  useEffect(() => {
+    if (!open) return;
+    function onKeyDown(e: KeyboardEvent) {
+      if (e.key === "Escape") close();
+    }
+    document.addEventListener("keydown", onKeyDown);
+    return () => document.removeEventListener("keydown", onKeyDown);
+  }, [open, close]);
+
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 border-b border-border/50 bg-background/80 backdrop-blur-xl">
+    <nav className="fixed top-0 left-0 right-0 z-50 border-b border-border/50 bg-background/80 backdrop-blur-xl" role="navigation" aria-label="Main">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         <div className="flex h-16 items-center justify-between">
           {/* Logo */}
@@ -48,6 +59,8 @@ export default function Navbar() {
             onClick={() => setOpen(!open)}
             className="text-text-secondary md:hidden cursor-pointer"
             aria-label="Toggle menu"
+            aria-expanded={open}
+            aria-controls="mobile-menu"
           >
             {open ? <X size={24} /> : <Menu size={24} />}
           </button>
@@ -56,13 +69,13 @@ export default function Navbar() {
 
       {/* Mobile Menu */}
       {open && (
-        <div className="border-t border-border bg-background px-6 py-4 md:hidden animate-fade-in">
+        <div id="mobile-menu" className="border-t border-border bg-background px-6 py-4 md:hidden animate-fade-in">
           <div className="flex flex-col gap-4">
             {navLinks.map((link) => (
               <Link
                 key={link.href}
                 href={link.href}
-                onClick={() => setOpen(false)}
+                onClick={close}
                 className="font-sans text-base text-text-secondary hover:text-text-primary"
               >
                 {link.label}
@@ -70,12 +83,12 @@ export default function Navbar() {
             ))}
             <Link
               href="/auth/login"
-              onClick={() => setOpen(false)}
+              onClick={close}
               className="font-sans text-base text-text-secondary hover:text-text-primary"
             >
               Login
             </Link>
-            <Link href="/auth/register" onClick={() => setOpen(false)}>
+            <Link href="/auth/register" onClick={close}>
               <Button size="sm" className="w-full">Join Beta</Button>
             </Link>
           </div>
