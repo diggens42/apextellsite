@@ -69,7 +69,7 @@ npm run db:studio    # Prisma Studio GUI
 
 ### Design System
 - **Colors**: Deep black (#0a0a0a), Crimson (#dc2626), Gold (#d4af37), Off-white (#f5f5f5)
-- **Fonts**: Bebas Neue (headlines), DM Mono (stats/numbers), Cormorant Garamond (body)
+- **Fonts**: Bebas Neue (headlines), DM Mono (stats/numbers), Space Grotesk (body/UI)
 - **Aesthetic**: Dark luxury / editorial. Not generic SaaS.
 - CSS custom properties defined in `app/globals.css`, mapped to Tailwind via `@theme inline`
 - Path alias: `@/*` maps to project root

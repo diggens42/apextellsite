@@ -1,90 +1,110 @@
+"use client";
+
 import Link from "next/link";
+import { ArrowRight } from "lucide-react";
 import Button from "../ui/Button";
 
 export default function Hero() {
   return (
-    <section className="relative overflow-hidden">
+    <section className="relative overflow-hidden noise">
       {/* Background grid effect */}
-      <div aria-hidden="true" className="absolute inset-0 opacity-[0.03]" style={{
-        backgroundImage: `linear-gradient(rgba(220,38,38,0.3) 1px, transparent 1px), linear-gradient(90deg, rgba(220,38,38,0.3) 1px, transparent 1px)`,
-        backgroundSize: "60px 60px",
-      }} />
+      <div
+        aria-hidden="true"
+        className="absolute inset-0 opacity-[0.03]"
+        style={{
+          backgroundImage: `linear-gradient(rgba(220,38,38,0.3) 1px, transparent 1px), linear-gradient(90deg, rgba(220,38,38,0.3) 1px, transparent 1px)`,
+          backgroundSize: "60px 60px",
+        }}
+      />
 
-      {/* Radial glow */}
-      <div aria-hidden="true" className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] rounded-full bg-crimson/[0.04] blur-3xl" />
+      {/* Animated gradient orbs */}
+      <div
+        aria-hidden="true"
+        className="absolute top-1/3 left-1/4 w-[600px] h-[600px] rounded-full bg-crimson/[0.04] blur-[120px] animate-float"
+      />
+      <div
+        aria-hidden="true"
+        className="absolute bottom-1/4 right-1/4 w-[500px] h-[500px] rounded-full bg-crimson/[0.03] blur-[100px] animate-float-reverse"
+      />
+      <div
+        aria-hidden="true"
+        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] rounded-full bg-gold/[0.015] blur-[140px]"
+      />
 
       <div className="relative mx-auto max-w-7xl px-6 lg:px-8">
         <div className="flex min-h-[90vh] flex-col items-center justify-center text-center">
-          {/* Eyebrow */}
-          <div className="mb-8 inline-flex items-center gap-2 rounded-full border border-crimson/30 bg-crimson/5 px-4 py-1.5">
-            <span className="h-1.5 w-1.5 rounded-full bg-crimson animate-pulse" />
-            <span className="font-sans text-xs font-semibold tracking-widest text-crimson uppercase">
-              Closed Beta — Now Open
+          {/* Eyebrow — Invitation Only */}
+          <div
+            className="mb-8 inline-flex items-center gap-2 rounded-full border border-gold/30 bg-gold/5 px-4 py-1.5 opacity-0 animate-fade-in-up"
+            style={{ animationDelay: "0ms", animationFillMode: "forwards" }}
+          >
+            <span className="h-1.5 w-1.5 rounded-full bg-gold animate-pulse" />
+            <span className="font-sans text-xs font-semibold tracking-widest text-gold uppercase">
+              Invitation Only — Closed Beta
             </span>
           </div>
 
           {/* Headline */}
-          <h1 className="font-display text-6xl leading-none tracking-wide text-text-primary sm:text-7xl md:text-8xl lg:text-9xl">
-            The Edge<span className="text-crimson">.</span>{" "}
+          <h1
+            className="font-display text-6xl leading-none tracking-wide text-text-primary sm:text-7xl md:text-8xl lg:text-9xl opacity-0 animate-fade-in-up"
+            style={{ animationDelay: "150ms", animationFillMode: "forwards" }}
+          >
+            See Everything<span className="text-crimson">.</span>
             <br className="hidden sm:block" />
-            The Data<span className="text-crimson">.</span>{" "}
+            Solve Anything<span className="text-crimson">.</span>
             <br className="hidden sm:block" />
-            The Win<span className="text-crimson">.</span>
+            Win More<span className="text-crimson">.</span>
           </h1>
 
           {/* Subheadline */}
-          <p className="mt-8 max-w-xl text-lg leading-relaxed text-text-secondary md:text-xl">
+          <p
+            className="mt-8 max-w-xl text-lg leading-relaxed text-text-secondary md:text-xl opacity-0 animate-fade-in-up"
+            style={{ animationDelay: "300ms", animationFillMode: "forwards" }}
+          >
             The all-in-one poker HUD, tracker, solver, trainer, and AI coach.
             Local-first. Private. Built for serious players.
           </p>
 
           {/* CTAs */}
-          <div className="mt-10 flex flex-col gap-4 sm:flex-row">
+          <div
+            className="mt-10 flex flex-col gap-4 sm:flex-row opacity-0 animate-fade-in-up"
+            style={{ animationDelay: "450ms", animationFillMode: "forwards" }}
+          >
             <Link href="/auth/register">
               <Button size="lg" className="animate-pulse-glow">
-                Join Closed Beta
+                Request Beta Access
               </Button>
             </Link>
             <Link href="/features">
-              <Button variant="ghost" size="lg">
+              <Button variant="ghost" size="lg" className="group">
                 See Features
+                <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
               </Button>
             </Link>
           </div>
 
-          {/* Mock UI Frame */}
-          <div className="mt-20 w-full max-w-4xl" role="img" aria-label="ApexTell application preview showing session profit of $1,247, 847 hands played, 6 active tables, and HUD stats including VPIP, PFR, 3Bet, AF, and WTSD">
-            <div className="rounded-xl border border-border bg-card/50 p-2 shadow-2xl shadow-crimson/5">
-              <div className="flex items-center gap-2 border-b border-border px-4 py-3">
-                <div className="h-3 w-3 rounded-full bg-crimson/60" />
-                <div className="h-3 w-3 rounded-full bg-gold/40" />
-                <div className="h-3 w-3 rounded-full bg-emerald-500/40" />
-                <span className="ml-4 font-mono text-xs text-text-muted">apextell — session active</span>
-              </div>
-              <div className="grid grid-cols-3 gap-px bg-border/30">
-                <div className="bg-card p-6 text-center">
-                  <p className="font-mono text-2xl font-medium text-gold">+$1,247</p>
-                  <p className="mt-1 font-sans text-xs text-text-muted">Session P/L</p>
-                </div>
-                <div className="bg-card p-6 text-center">
-                  <p className="font-mono text-2xl font-medium text-text-primary">847</p>
-                  <p className="mt-1 font-sans text-xs text-text-muted">Hands Played</p>
-                </div>
-                <div className="bg-card p-6 text-center">
-                  <p className="font-mono text-2xl font-medium text-emerald-400">6</p>
-                  <p className="mt-1 font-sans text-xs text-text-muted">Active Tables</p>
-                </div>
-              </div>
-              <div className="bg-card p-6">
-                <div className="flex gap-4">
-                  {["VPIP 22%", "PFR 17%", "3Bet 8.4%", "AF 2.9", "WTSD 28%"].map((stat) => (
-                    <span key={stat} className="rounded border border-border bg-elevated px-3 py-1.5 font-mono text-xs text-text-secondary">
-                      {stat}
-                    </span>
-                  ))}
-                </div>
-              </div>
+          {/* Exclusivity & Scarcity */}
+          <div
+            className="mt-10 flex flex-col items-center gap-3 opacity-0 animate-fade-in-up"
+            style={{ animationDelay: "600ms", animationFillMode: "forwards" }}
+          >
+            <p className="text-sm text-gold font-medium">
+              Limited to 500 founding members
+            </p>
+            <div className="flex items-center gap-4 text-xs text-text-muted">
+              <span className="flex items-center gap-1.5">
+                <span className="h-1 w-1 rounded-full bg-crimson" />
+                Free access during beta
+              </span>
+              <span className="text-border">|</span>
+              <span className="flex items-center gap-1.5">
+                <span className="h-1 w-1 rounded-full bg-crimson" />
+                Founding member badge at launch
+              </span>
             </div>
+            <p className="mt-1 font-mono text-xs text-text-muted/60">
+              Beta closes Q2 2026
+            </p>
           </div>
         </div>
       </div>

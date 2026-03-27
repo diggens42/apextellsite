@@ -1,6 +1,7 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
+import { useScrollReveal } from "@/app/hooks/useScrollReveal";
 
 interface StatItem {
   value: number;
@@ -67,31 +68,23 @@ function AnimatedNumber({ value, suffix, active }: { value: number; suffix: stri
 }
 
 export default function StatsBar() {
-  const ref = useRef<HTMLDivElement>(null);
-  const [visible, setVisible] = useState(false);
-
-  useEffect(() => {
-    const el = ref.current;
-    if (!el) return;
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setVisible(true);
-          observer.disconnect();
-        }
-      },
-      { threshold: 0.3 }
-    );
-    observer.observe(el);
-    return () => observer.disconnect();
-  }, []);
+  const { ref, visible } = useScrollReveal({ threshold: 0.3 });
 
   return (
     <section ref={ref} className="border-y border-border bg-card/50">
       <div className="mx-auto max-w-7xl px-6 py-16 lg:px-8">
         <div className="grid grid-cols-2 gap-8 md:grid-cols-4">
-          {stats.map((stat) => (
-            <div key={stat.label} className="text-center" aria-label={`${stat.value}${stat.suffix} ${stat.label}`}>
+          {stats.map((stat, i) => (
+            <div
+              key={stat.label}
+              className={`text-center transition-all duration-500 ease-out ${
+                visible
+                  ? "opacity-100 translate-y-0"
+                  : "opacity-0 translate-y-4"
+              }`}
+              style={{ transitionDelay: `${i * 100}ms` }}
+              aria-label={`${stat.value}${stat.suffix} ${stat.label}`}
+            >
               <AnimatedNumber value={stat.value} suffix={stat.suffix} active={visible} />
               <p className="mt-2 font-sans text-sm font-medium text-text-muted">{stat.label}</p>
             </div>

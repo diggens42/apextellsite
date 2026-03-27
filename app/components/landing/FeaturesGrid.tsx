@@ -1,6 +1,5 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
 import {
   Monitor,
   Brain,
@@ -10,6 +9,7 @@ import {
   BarChart3,
 } from "lucide-react";
 import Card from "../ui/Card";
+import ScrollReveal from "../ui/ScrollReveal";
 
 const features = [
   {
@@ -51,41 +51,25 @@ const features = [
 ];
 
 export default function FeaturesGrid() {
-  const ref = useRef<HTMLDivElement>(null);
-  const [visible, setVisible] = useState(false);
-
-  useEffect(() => {
-    const el = ref.current;
-    if (!el) return;
-    const observer = new IntersectionObserver(
-      ([entry]) => { if (entry.isIntersecting) { setVisible(true); observer.disconnect(); } },
-      { threshold: 0.1 }
-    );
-    observer.observe(el);
-    return () => observer.disconnect();
-  }, []);
-
   return (
     <section className="py-24 md:py-32">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
-        <div className="text-center">
-          <h2 className="font-display text-4xl tracking-wide text-text-primary md:text-5xl">
-            Everything You Need<span className="text-crimson">.</span> One App<span className="text-crimson">.</span>
-          </h2>
-          <p className="mt-4 text-lg text-text-secondary max-w-2xl mx-auto">
-            Seven powerful tools that work together — no more juggling subscriptions.
-          </p>
-        </div>
+        <ScrollReveal variant="fade-up">
+          <div className="text-center">
+            <h2 className="font-display text-4xl tracking-wide text-text-primary md:text-5xl">
+              Everything You Need<span className="text-crimson">.</span> One App<span className="text-crimson">.</span>
+            </h2>
+            <p className="mt-4 text-lg text-text-secondary max-w-2xl mx-auto">
+              Seven powerful tools that work together — no more juggling subscriptions.
+            </p>
+          </div>
+        </ScrollReveal>
 
-        <div ref={ref} className="mt-16 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="mt-16 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {features.map((feature, i) => (
-            <div
-              key={feature.title}
-              className={visible ? "animate-fade-in-up opacity-0" : "opacity-0"}
-              style={{ animationDelay: `${i * 100}ms`, animationFillMode: "forwards" }}
-            >
-              <Card hover className="h-full">
-                <feature.icon className="h-8 w-8 text-crimson mb-4" strokeWidth={1.5} />
+            <ScrollReveal key={feature.title} variant="fade-up" delay={i * 100}>
+              <Card hover className="h-full group">
+                <feature.icon className="h-8 w-8 text-crimson mb-4 transition-transform duration-300 group-hover:scale-110" strokeWidth={1.5} />
                 <h3 className="font-sans text-lg font-semibold text-text-primary">
                   {feature.title}
                 </h3>
@@ -93,7 +77,7 @@ export default function FeaturesGrid() {
                   {feature.description}
                 </p>
               </Card>
-            </div>
+            </ScrollReveal>
           ))}
         </div>
       </div>

@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Bebas_Neue, DM_Mono, Cormorant_Garamond } from "next/font/google";
+import { Bebas_Neue, DM_Mono, Space_Grotesk } from "next/font/google";
 import Navbar from "./components/layout/Navbar";
 import Footer from "./components/layout/Footer";
 import CookieBanner from "./components/layout/CookieBanner";
@@ -17,7 +17,7 @@ const dmMono = DM_Mono({
   variable: "--font-mono",
 });
 
-const cormorantGaramond = Cormorant_Garamond({
+const spaceGrotesk = Space_Grotesk({
   weight: ["400", "500", "600", "700"],
   subsets: ["latin"],
   variable: "--font-body",
@@ -25,7 +25,7 @@ const cormorantGaramond = Cormorant_Garamond({
 
 export const metadata: Metadata = {
   title: {
-    default: "ApexTell — The Edge. The Data. The Win.",
+    default: "ApexTell — See Everything. Solve Anything. Win More.",
     template: "%s | ApexTell",
   },
   description:
@@ -41,7 +41,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${bebasNeue.variable} ${dmMono.variable} ${cormorantGaramond.variable} antialiased`}
+        className={`${bebasNeue.variable} ${dmMono.variable} ${spaceGrotesk.variable} antialiased`}
       >
         <a
           href="#main-content"
